@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Magical Story Creator - AI Children's Book Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="star star1">✨</div>
+        <div class="star star2">⭐</div>
+        <div class="star star3">🌟</div>
+        <div class="star star4">✨</div>
+        <div class="rainbow"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="logo">
+                <span class="magic-icon">🪄</span>
+                Magical Story Creator
+                <span class="sparkle">✨</span>
+            </h1>
+            <p class="tagline">Create amazing illustrated stories with AI magic!</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Story Creation Form -->
+        <div id="storyForm" class="story-form-container">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <span class="icon">📚</span>
+                    Let's Create Your Story!
+                </h2>
+
+                <form id="createStoryForm">
+                    <!-- Theme Selection -->
+                    <div class="form-group">
+                        <label for="theme" class="form-label">
+                            <span class="label-icon">🎨</span>
+                            Choose Your Adventure Theme
+                        </label>
+                        <div class="theme-grid" id="themeGrid">
+                            <!-- Themes will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Characters -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <span class="label-icon">🦸</span>
+                            Create Your Characters
+                        </label>
+                        <div id="charactersContainer" class="characters-container">
+                            <div class="character-input">
+                                <input type="text" placeholder="Character name (e.g., Luna)" class="character-name" required>
+                                <input type="text" placeholder="Description (e.g., brave young explorer)" class="character-description" required>
+                                <button type="button" class="remove-character-btn" style="display: none;">❌</button>
+                            </div>
+                        </div>
+                        <button type="button" id="addCharacterBtn" class="add-character-btn">
+                            <span>➕ Add Another Character</span>
+                        </button>
+                    </div>
+
+                    <!-- Age Group -->
+                    <div class="form-group">
+                        <label for="ageGroup" class="form-label">
+                            <span class="label-icon">👶</span>
+                            Age Group
+                        </label>
+                        <div class="age-group-selector">
+                            <label class="age-option">
+                                <input type="radio" name="ageGroup" value="3-5" required>
+                                <span class="age-card">
+                                    <span class="age-emoji">🧸</span>
+                                    <span class="age-text">3-5 years</span>
+                                    <span class="age-desc">Simple & Fun</span>
+                                </span>
+                            </label>
+                            <label class="age-option">
+                                <input type="radio" name="ageGroup" value="6-8" checked>
+                                <span class="age-card">
+                                    <span class="age-emoji">🎨</span>
+                                    <span class="age-text">6-8 years</span>
+                                    <span class="age-desc">Adventure Time</span>
+                                </span>
+                            </label>
+                            <label class="age-option">
+                                <input type="radio" name="ageGroup" value="9-12">
+                                <span class="age-card">
+                                    <span class="age-emoji">🚀</span>
+                                    <span class="age-text">9-12 years</span>
+                                    <span class="age-desc">Complex Stories</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Moral/Lesson -->
+                    <div class="form-group">
+                        <label for="moral" class="form-label">
+                            <span class="label-icon">💝</span>
+                            Life Lesson or Moral (Optional)
+                        </label>
+                        <input type="text" id="moral" name="moral" 
+                               placeholder="e.g., The importance of kindness, Being brave, Friendship matters"
+                               class="form-input">
+                    </div>
+
+                    <!-- Custom Ideas -->
+                    <div class="form-group">
+                        <label for="customIdeas" class="form-label">
+                            <span class="label-icon">💡</span>
+                            Your Special Ideas (Optional)
+                        </label>
+                        <textarea id="customIdeas" name="customIdeas" rows="3"
+                                  placeholder="Add any special ideas, plot points, or specific scenes you'd like in your story..."
+                                  class="form-textarea"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="create-story-btn">
+                        <span class="btn-icon">🪄</span>
+                        <span class="btn-text">Create My Magical Story!</span>
+                        <span class="btn-sparkles">✨</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Animation -->
+        <div id="loadingContainer" class="loading-container" style="display: none;">
+            <div class="magic-loading">
+                <div class="wand-animation">
+                    <div class="wand">🪄</div>
+                    <div class="magic-particles">
+                        <span class="particle">✨</span>
+                        <span class="particle">⭐</span>
+                        <span class="particle">🌟</span>
+                        <span class="particle">✨</span>
+                    </div>
+                </div>
+                <h3 class="loading-title">Creating Your Magical Story...</h3>
+                <p class="loading-message" id="loadingMessage">Gathering magic dust...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Book Preview -->
+        <div id="bookPreview" class="book-preview-container" style="display: none;">
+            <div class="book-controls">
+                <button id="prevPageBtn" class="page-nav-btn prev-btn" disabled>
+                    <span>⬅️ Previous</span>
+                </button>
+                <span class="page-indicator" id="pageIndicator">Page 1 of 7</span>
+                <button id="nextPageBtn" class="page-nav-btn next-btn">
+                    <span>Next ➡️</span>
+                </button>
+            </div>
+
+            <div class="book-wrapper">
+                <div class="book" id="bookContainer">
+                    <div class="page left-page" id="leftPage">
+                        <div class="page-content">
+                            <div class="page-illustration" id="leftIllustration"></div>
+                            <div class="page-text" id="leftText"></div>
+                            <div class="page-number" id="leftPageNumber"></div>
+                        </div>
+                    </div>
+                    <div class="page right-page" id="rightPage">
+                        <div class="page-content">
+                            <div class="page-illustration" id="rightIllustration"></div>
+                            <div class="page-text" id="rightText"></div>
+                            <div class="page-number" id="rightPageNumber"></div>
+                        </div>
+                    </div>
+                    <div class="book-spine"></div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="downloadPdfBtn" class="action-btn download-btn">
+                    <span>📥 Download PDF</span>
+                </button>
+                <button id="shareStoryBtn" class="action-btn share-btn">
+                    <span>🔗 Share Story</span>
+                </button>
+                <button id="newStoryBtn" class="action-btn new-story-btn">
+                    <span>✨ Create New Story</span>
+                </button>
+                <button id="regeneratePageBtn" class="action-btn regenerate-btn">
+                    <span>🔄 Regenerate This Page</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="errorContainer" class="error-container" style="display: none;">
+            <div class="error-card">
+                <span class="error-icon">😔</span>
+                <h3>Oops! Something went wrong</h3>
+                <p id="errorMessage"></p>
+                <button id="tryAgainBtn" class="try-again-btn">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
